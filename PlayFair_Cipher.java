@@ -10,11 +10,11 @@ import java.util.Scanner;
 
 /**
  *
- * @author apinzonj
+ * @author Daniel
  */
-public class PlayFair_Cipher {
+public class Cifrado_playfair {
 
-    private static int opt;
+     private static int opt;
     private static String message;
     private static String readytoencrypt;
 
@@ -30,9 +30,11 @@ public class PlayFair_Cipher {
             case 1:
                 System.out.println("ingrese el mensaje a cifrar: \n");
                 message = readmessage();
+                message = message.replaceAll("\\s","" );
                 System.out.println("message: " + message);
-                readytoencrypt = config_message(message);
-                System.out.println(readytoencrypt);
+              
+                 // readytoencrypt = config_message(message);
+                //System.out.println(readytoencrypt);
                 
                 break;
             default:
@@ -53,17 +55,21 @@ public class PlayFair_Cipher {
     * @param message
     * @return 
     */
-    private static String config_message(String message) {
-        String[] messagec; String encript_message="";
+    /* private static String config_message(String message) {
+        String[] messagec;
+        String encript_message="";
         messagec = message.split(" ");
-
-
         
-        for (int i = 0; i <= messagec.length; i++) {
+    
+        
+        for (int i = 0; i < messagec.length; i++) {
+           
             encript_message += encript_message.concat(messagec[i]);
+          
         }
+        
         System.out.println(encript_message);
         return message;
-    }
-
+    }*/
+    
 }
