@@ -5,22 +5,70 @@
  */
 package cifrado_playfair;
 
-import java.io.InputStreamReader;
 import java.util.Scanner;
+import javax.swing.text.Keymap;
 
 /**
  *
  * @author Daniel
  */
-public class Cifrado_playfair {
+public class PlayFair_Cipher {
 
-     private static int opt;
+    private static int opt;
     private static String message;
-    private static String readytoencrypt;
+    private static final char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+        'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'y', 'Z'};
+    private static char[][] KeyMat = new char[5][5];
+
+    /**
+     * *
+     * Method that creat a random Matrix key
+     *
+     * @param abecedario
+     * @return
+     */
+    private static char[][] createMatKey(char[] abecedario) {
+        int randompos = (int) (Math.random()*25);
+        int[] pos_abc = new int[25];
+        
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                randompos = (int) (Math.random() * 25);
+                
+                KeyMat[i][j] = alfabeto[randompos];
+            }
+        }
+        return KeyMat;
+    }
+
+    /**
+     * 
+     * funtion that read message with some words.
+     *
+     * @return
+     */
+    private static String readmessage() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    /**
+     *funtion that print on console log a matrix of string
+     * 
+     * @param mat 
+     */
+    private static void printingMat(char[][] mat) {
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args) {
         // TODO code application logic here
-        InputStreamReader rd = new InputStreamReader(System.in);
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido, que desea hacer:\n" + "ingrese:\n" + "1. Encriptar mensaje por el metodo PlayFair.\n"
                 + "2. Desencriptar el mensaje encriptado por Playfair.\n" + "3. para finalizar el cifrador.\n");
@@ -28,48 +76,17 @@ public class Cifrado_playfair {
         opt = sc.nextInt();
         switch (opt) {
             case 1:
-                System.out.println("ingrese el mensaje a cifrar: \n");
+                System.out.println("ingrese el mensaje a cifrar en mayuscula: \n");
                 message = readmessage();
-                message = message.replaceAll("\\s","" );
+                message = message.replaceAll("\\s", "");
                 System.out.println("message: " + message);
-              
-                 // readytoencrypt = config_message(message);
-                //System.out.println(readytoencrypt);
+                KeyMat = createMatKey(alfabeto);
+                printingMat(KeyMat);
                 
                 break;
             default:
                 break;
         }
     }
-    /***
-     * funtion that read message with some words.
-     * @return 
-     */
-    private static String readmessage() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
 
-   /***
-    * funtiont that clean and prepare message for encript 
-    * @param message
-    * @return 
-    */
-    /* private static String config_message(String message) {
-        String[] messagec;
-        String encript_message="";
-        messagec = message.split(" ");
-        
-    
-        
-        for (int i = 0; i < messagec.length; i++) {
-           
-            encript_message += encript_message.concat(messagec[i]);
-          
-        }
-        
-        System.out.println(encript_message);
-        return message;
-    }*/
-    
 }
