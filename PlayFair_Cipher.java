@@ -5,8 +5,8 @@
  */
 package cifrado_playfair;
 
+import java.util.Random;
 import java.util.Scanner;
-import javax.swing.text.Keymap;
 
 /**
  *
@@ -19,30 +19,58 @@ public class PlayFair_Cipher {
     private static final char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
         'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'y', 'Z'};
     private static char[][] KeyMat = new char[5][5];
+    private static Object rnd;
 
     /**
      * *
-     * Method that creat a random Matrix key
+     * Method that creat a random Matrix key 
      *
      * @param abecedario
      * @return
      */
     private static char[][] createMatKey(char[] abecedario) {
-        int randompos = (int) (Math.random()*25);
-        int[] pos_abc = new int[25];
-        
+
+        int[] pos = new int[24];
+        pos = ShuffleArrayPos(0, 24);
+
+        //llenado de la matrix
+        int k = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                randompos = (int) (Math.random() * 25);
-                
-                KeyMat[i][j] = alfabeto[randompos];
+                KeyMat[i][j] = alfabeto[pos[(k)]];
+                k++;
             }
         }
         return KeyMat;
+
+    }
+
+    /***
+     * method that create a random pos int[], 
+     * @param a min value for range of array
+     * @param b max value for range of array
+     * @return int[] 
+     */
+    public static int[] ShuffleArrayPos(int a, int b) {
+        Random Ramdpos = new Random();  // Random number generator		
+        int tam = b - a + 1;
+        int[] newposshuffle = new int[tam];
+
+        for (int i = 0; i < tam; i++) {
+            newposshuffle[i] = a + i;
+        }
+
+        for (int i = 0; i < newposshuffle.length; i++) {
+            int randomPosition = Ramdpos.nextInt(newposshuffle.length);
+            int temp = newposshuffle[i];
+            newposshuffle[i] = newposshuffle[randomPosition];
+            newposshuffle[randomPosition] = temp;
+        }
+        return newposshuffle;
     }
 
     /**
-     * 
+     *
      * funtion that read message with some words.
      *
      * @return
@@ -53,9 +81,9 @@ public class PlayFair_Cipher {
     }
 
     /**
-     *funtion that print on console log a matrix of string
-     * 
-     * @param mat 
+     * funtion that print on console log a matrix of string
+     *
+     * @param mat
      */
     private static void printingMat(char[][] mat) {
         for (int i = 0; i < mat.length; i++) {
@@ -79,10 +107,12 @@ public class PlayFair_Cipher {
                 System.out.println("ingrese el mensaje a cifrar en mayuscula: \n");
                 message = readmessage();
                 message = message.replaceAll("\\s", "");
-                System.out.println("message: " + message);
+                System.out.println("message: " + message + "\n");
                 KeyMat = createMatKey(alfabeto);
                 printingMat(KeyMat);
                 
+                
+
                 break;
             default:
                 break;
