@@ -5,8 +5,16 @@
  */
 package cifrado_playfair;
 
+import java.io.InputStreamReader;
 import java.util.Random;
 import java.util.Scanner;
+import jdk.nashorn.internal.objects.NativeString;
+import static jdk.nashorn.internal.objects.NativeString.substring;
+
+
+
+
+
 
 /**
  *
@@ -16,14 +24,16 @@ public class PlayFair_Cipher {
 
     private static int opt;
     private static String message;
+    private static String readytoencrypt;
+  
     private static final char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-        'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'y', 'Z'};
+        'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private static char[][] KeyMat = new char[5][5];
     private static Object rnd;
 
     /**
      * *
-     * Method that creat a random Matrix key 
+     * Method that creat a random Matrix key
      *
      * @param abecedario
      * @return
@@ -45,11 +55,13 @@ public class PlayFair_Cipher {
 
     }
 
-    /***
-     * method that create a random pos int[], 
+    /**
+     * *
+     * method that create a random pos int[],
+     *
      * @param a min value for range of array
      * @param b max value for range of array
-     * @return int[] 
+     * @return int[]
      */
     public static int[] ShuffleArrayPos(int a, int b) {
         Random Ramdpos = new Random();  // Random number generator		
@@ -69,22 +81,6 @@ public class PlayFair_Cipher {
         return newposshuffle;
     }
 
-    /**
-     *
-     * funtion that read message with some words.
-     *
-     * @return
-     */
-    private static String readmessage() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
-    /**
-     * funtion that print on console log a matrix of string
-     *
-     * @param mat
-     */
     private static void printingMat(char[][] mat) {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
@@ -94,9 +90,62 @@ public class PlayFair_Cipher {
         }
     }
 
+    /**
+     * *
+     * funtion that read message with some words.
+     *
+     * @return
+     */
+    private static String readmessage() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    private static String JandI(String message) {
+        message = message.replace("j", "i");
+        message = message.replace("J", "I");
+        return message;
+    }
+
+    private static String Separate(String message) {
+        int N = message.length();
+        String[] part = new String[100];
+        String Z;
+        int k = 0;
+
+        for (int i = 0; i < N; i++) {
+            if (i % 2 != 0) {
+
+                //   System.out.println(message.substring(i-1, i+1));
+                part[k] = message.substring(i - 1, i + 1);
+                k++;
+            }
+            if (i == N - 1 && message.length() % 2 != 0) {
+                Z = message.substring(i) + "z";
+                part[k] = Z;
+                k++;
+            }
+
+            if (i > 0 && message.substring(i - 1, i).equals(message.substring(i, i + 1)) && i < N) {
+                System.out.println("Se encontro una coincidencia");
+                message = message.substring(0, i - 1) + "z" + message.substring(i, N - 1);
+                i = 0;
+                System.out.println("message: " + message);
+
+            }
+        }
+        System.out.println("VECTOR CON TODAS LAS PAREJAS");
+        for (int i = 0; i < k; i++) {
+
+            System.out.println(part[i]);
+        }
+
+        return message;
+    }
+
     public static void main(String[] args) {
         // TODO code application logic here
-
+        InputStreamReader rd = new InputStreamReader(System.in);
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido, que desea hacer:\n" + "ingrese:\n" + "1. Encriptar mensaje por el metodo PlayFair.\n"
                 + "2. Desencriptar el mensaje encriptado por Playfair.\n" + "3. para finalizar el cifrador.\n");
@@ -104,14 +153,18 @@ public class PlayFair_Cipher {
         opt = sc.nextInt();
         switch (opt) {
             case 1:
-                System.out.println("ingrese el mensaje a cifrar en mayuscula: \n");
+                System.out.println("ingrese el mensaje a cifrar: \n");
                 message = readmessage();
                 message = message.replaceAll("\\s", "");
-                System.out.println("message: " + message + "\n");
-                KeyMat = createMatKey(alfabeto);
+                System.out.println("Message sin espacios: " + message);
+                System.out.println("Matriz Clave \n" ); 
+                KeyMat= createMatKey(alfabeto);
                 printingMat(KeyMat);
+                message = JandI(message);
                 
-                
+                System.out.println(Separate(message));
+                 // readytoencrypt = config_message(message);
+                //System.out.println(readytoencrypt);
 
                 break;
             default:
