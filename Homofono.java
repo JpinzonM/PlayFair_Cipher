@@ -5,7 +5,9 @@
  */
 package homofono;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,136 +25,214 @@ public class Homofono {
         return sc.nextLine();
     }
 
-    public static HashMap<String, Integer> GenerarSimbolos(int Nsim) {
+    public static HashMap<String, List<Integer>> GenerarSimbolos(int Nsim) {
         int[] simbolos = new int[Nsim];
-        HashMap<String, Integer> hmap = new HashMap<String, Integer>();
-
+        HashMap<String,List<Integer>> hmap = new HashMap<String, List<Integer>>();
+         List<Integer> CA = new ArrayList<Integer>();
+         List<Integer> CB = new ArrayList<Integer>();
+         List<Integer> CC = new ArrayList<Integer>();
+         List<Integer> CD = new ArrayList<Integer>();
+         List<Integer> CE = new ArrayList<Integer>();
+         List<Integer> CF = new ArrayList<Integer>();
+         List<Integer> CG = new ArrayList<Integer>();
+         List<Integer> CH = new ArrayList<Integer>();
+         List<Integer> CI = new ArrayList<Integer>();
+         List<Integer> CJ = new ArrayList<Integer>();
+         List<Integer> CK = new ArrayList<Integer>();
+         List<Integer> CL = new ArrayList<Integer>();
+         List<Integer> CM = new ArrayList<Integer>();
+         List<Integer> CN = new ArrayList<Integer>();
+         List<Integer> CO = new ArrayList<Integer>();
+         List<Integer> CP = new ArrayList<Integer>();
+         List<Integer> CQ = new ArrayList<Integer>();
+         List<Integer> CR = new ArrayList<Integer>();
+         List<Integer> CS = new ArrayList<Integer>();
+         List<Integer> CT = new ArrayList<Integer>();
+         List<Integer> CU = new ArrayList<Integer>();
+         List<Integer> CV = new ArrayList<Integer>();
+         List<Integer> CW = new ArrayList<Integer>();
+         List<Integer> CX = new ArrayList<Integer>();
+         List<Integer> CY = new ArrayList<Integer>();
+         List<Integer> CZ = new ArrayList<Integer>();
         for (int i = 0; i < Nsim; i++) {
 
             simbolos[i] = i;
-
+          
         }
         simbolos = ShuffleArrayPos(0, Nsim);
-
-        int A = 82;
+      
+        float A = (0.082f)*Nsim;
         for (int i = 0; i < A; i++) {
-            hmap.put("A", simbolos[i]);
+          
+           CA.add(simbolos[i]);
         }
-        int B = 15;
-        for (int i = A; i < A + B; i++) {
-            hmap.put("B", simbolos[i]);
+        
+         hmap.put("A", CA);
+        // System.out.println(hmap);
+      float B = 0.015f*Nsim;
+        for (int i = (int) A; i < A + B; i++) {
+           CB.add(simbolos[i]);
+          
         }
-        int C = 27;
-        for (int i = A + B; i < A + B + C; i++) {
-            hmap.put("C", simbolos[i]);
+          hmap.put("B", CB);
+      float C = 0.027f*Nsim;
+        for (int i = (int) (A + B); i < A + B + C; i++) {
+           CC.add(simbolos[i]);
+          
         }
-        int D = 42;
-        for (int i = A + B + C; i < A + B + C + D; i++) {
-            hmap.put("D", simbolos[i]);
+          hmap.put("C", CC);
+        float D = 0.042f*Nsim;
+        for (int i = (int) (A + B + C); i < A + B + C + D; i++) {
+             CD.add(simbolos[i]);
+          
         }
-        int E = 127;
-        for (int i = A + B + C; i < A + B + C + D; i++) {
-            hmap.put("D", simbolos[i]);
+          hmap.put("D", CD);
+        float E = 0.12f*Nsim;
+        for (int i = (int) (A + B + C); i < A + B + C + D; i++) {
+               CE.add(simbolos[i]);
+          
         }
-        int F = 22;
-        for (int i = A + B + C + E; i < A + B + C + E + F; i++) {
-            hmap.put("F", simbolos[i]);
+          hmap.put("E", CE);
+        float F = 0.022f*Nsim;
+        for (int i = (int) (A + B + C + E); i < A + B + C + E + F; i++) {
+              CF.add(simbolos[i]);
+          
         }
-        int G = 20;
-        for (int i = A + B + C + E + F; i < A + B + C + E + F + G; i++) {
-            hmap.put("G", simbolos[i]);
+          hmap.put("F", CF);
+        float G = 0.020f*Nsim;
+        for (int i = (int) (A + B + C + E + F); i < A + B + C + E + F + G; i++) {
+           CG.add(simbolos[i]);
+          
         }
-        int H = 61;
-        for (int i = A + B + C + E + F + G; i < A + B + C + E + F + G + H; i++) {
-            hmap.put("H", simbolos[i]);
+          hmap.put("G", CG);
+        float H = 0.060f*Nsim;
+        for (int i = (int) (A + B + C + E + F + G); i < A + B + C + E + F + G + H; i++) {
+              CH.add(simbolos[i]);
+          
         }
-        int I = 70;
-        for (int i = A + B + C + E + F + G + H; i < A + B + C + E + F + G + H + I; i++) {
-            hmap.put("I", simbolos[i]);
+          hmap.put("H", CH);
+        float I = 0.069f*Nsim;
+        for (int i = (int) (A + B + C + E + F + G + H); i < A + B + C + E + F + G + H + I; i++) {
+              CI.add(simbolos[i]);
+          
         }
-        int J = 2;
-        for (int i = A + B + C + E + F + G + H + I; i < A + B + C + E + F + G + H + I + J; i++) {
-            hmap.put("J", simbolos[i]);
+          hmap.put("I", CI);
+        float J = 0.0015f*Nsim;
+        for (int i = (int) (A + B + C + E + F + G + H + I); i < A + B + C + E + F + G + H + I + J; i++) {
+               CJ.add(simbolos[i]);
+          
         }
-        int K = 7;
-        for (int i = A + B + C + E + F + G + H + I + J; i < A + B + C + E + F + G + H + I + J + K; i++) {
-            hmap.put("K", simbolos[i]);
+          hmap.put("J", CJ);
+        float K = 0.007f*Nsim;
+        for (int i = (int) (A + B + C + E + F + G + H + I + J); i < A + B + C + E + F + G + H + I + J + K; i++) {
+                CK.add(simbolos[i]);
+          
         }
-        int L = 40;
-        for (int i = A + B + C + E + F + G + H + I + J + K; i < A + B + C + E + F + G + H + I + J + K + L; i++) {
-            hmap.put("L", simbolos[i]);
+          hmap.put("K", CK);
+        float L = 0.040f*Nsim;
+        for (int i = (int) (A + B + C + E + F + G + H + I + J + K); i < A + B + C + E + F + G + H + I + J + K + L; i++) {
+              CL.add(simbolos[i]);
+          
         }
+          hmap.put("L", CL);
 
-        int and = A + B + C + E + F + G + H + I + J + K + L;
-        int M = 24;
-        for (int i = and; i < and + M; i++) {
-            hmap.put("M", simbolos[i]);
+        float and = A + B + C + E + F + G + H + I + J + K + L;
+        float M = 0.024f*Nsim;
+        for (int i = (int) and; i < and + M; i++) {
+                CM.add(simbolos[i]);
+          
         }
-        int N = 67;
-        for (int i = and + M; i < and + M + N; i++) {
-            hmap.put("N", simbolos[i]);
+          hmap.put("M", CM);
+        float N = 0.067f*Nsim;
+        for (int i = (int) (and + M); i < and + M + N; i++) {
+             CN.add(simbolos[i]);
+          
         }
-        int O = 75;
-        for (int i = and + M + N; i < and + M + N + O; i++) {
-            hmap.put("O", simbolos[i]);
+          hmap.put("N", CN);
+        float O = 0.075f*Nsim;
+        for (int i = (int) (and + M + N); i < and + M + N + O; i++) {
+               CO.add(simbolos[i]);
+          
         }
-        int P = 19;
-        for (int i = and + M + N + O; i < and + M + N + O + P; i++) {
-            hmap.put("P", simbolos[i]);
+          hmap.put("O", CO);
+        float P = 0.02f*Nsim;
+        for (int i = (int) (and + M + N + O); i < and + M + N + O + P; i++) {
+              CP.add(simbolos[i]);
+          
         }
-        int Q = 1;
-        for (int i = and + M + N + O + P; i < and + M + N + O + P + Q; i++) {
-            hmap.put("Q", simbolos[i]);
+          hmap.put("P", CP);
+        float Q = 0.001f*Nsim;
+        for (int i = (int) (and + M + N + O + P); i < and + M + N + O + P + Q; i++) {
+               CQ.add(simbolos[i]);
+          
         }
-        int R = 60;
-        for (int i = and + M + N + O + P + Q; i < and + M + N + O + P + Q + R; i++) {
-            hmap.put("R", simbolos[i]);
+          hmap.put("Q", CQ);
+        float R = 0.060f*Nsim;
+        for (int i = (int) (and + M + N + O + P + Q); i < and + M + N + O + P + Q + R; i++) {
+              CR.add(simbolos[i]);
+          
         }
-        int S = 63;
-        for (int i = and + M + N + O + P + Q + R; i < and + M + N + O + P + Q + R + S; i++) {
-            hmap.put("S", simbolos[i]);
+          hmap.put("R", CR);
+        float S = 0.063f* Nsim;
+        for (int i = (int) (and + M + N + O + P + Q + R); i < and + M + N + O + P + Q + R + S; i++) {
+               CS.add(simbolos[i]);
+          
         }
-        int T = 90;
-        for (int i = and + M + N + O + P + Q + R + S; i < and + M + N + O + P + Q + R + S + T; i++) {
-            hmap.put("T", simbolos[i]);
+          hmap.put("S", CS);
+        float T = 0.090f*Nsim;
+        for (int i = (int) (and + M + N + O + P + Q + R + S); i < and + M + N + O + P + Q + R + S + T; i++) {
+               CT.add(simbolos[i]);
+          
         }
-        int and2 = and + M + N + O + P + Q + R + S + T;
-        int U = 27;
-        for (int i = and2; i < and2 + U; i++) {
-            hmap.put("U", simbolos[i]);
+          hmap.put("T", CH);
+        float and2 = and + M + N + O + P + Q + R + S + T;
+        float U = 0.027f*Nsim;
+        for (int i = (int) and2; i < and2 + U; i++) {
+               CU.add(simbolos[i]);
+          
         }
-        int V = 10;
-        for (int i = and2 + U; i < and2 + U + V; i++) {
-            hmap.put("V", simbolos[i]);
+          hmap.put("U", CU);
+        float V = 0.010f*Nsim;
+        for (int i = (int) (and2 + U); i < and2 + U + V; i++) {
+               CV.add(simbolos[i]);
+          
         }
-        int W = 23;
-        for (int i = and2 + U + V; i < and2 + U + V + W; i++) {
-            hmap.put("W", simbolos[i]);
+          hmap.put("V", CV);
+        float W = 0.023f*Nsim;
+        for (int i = (int) (and2 + U + V); i < and2 + U + V + W; i++) {
+             CW.add(simbolos[i]);
+          
         }
-        int X = 10;
-        for (int i = and2 + U + V + W; i < and2 + U + V + W + X; i++) {
-            hmap.put("X", simbolos[i]);
+          hmap.put("W", CW);
+        float X = 0.010f*Nsim;
+        for (int i = (int) (and2 + U + V + W); i < and2 + U + V + W + X; i++) {
+               CX.add(simbolos[i]);
+          
         }
-        int Y = 19;
-        for (int i = and2 + U + V + W + X; i < and2 + U + V + W + X + Y; i++) {
-            hmap.put("Y", simbolos[i]);
+          hmap.put("X", CX);
+        float Y = 0.019f*Nsim;
+        for (int i = (int) (and2 + U + V + W + X); i < and2 + U + V + W + X + Y; i++) {
+               CY.add(simbolos[i]);
+          
         }
-        int Z = 12;
-        for (int i = and2 + U + V + W + X; i < and2 + U + V + W + X + Y + Z; i++) {
-            hmap.put("Z", simbolos[i]);
+          hmap.put("Y", CY);
+        float Z = 0.00074f*Nsim;
+        for (int i = (int) (and2 + U + V + W + X+Y); i < and2 + U + V + W + X + Y + Z; i++) {
+               CH.add(simbolos[i]);
+          
         }
-
-     ///   for (int i = 0; i < Nsim; i++) {
-       // System.out.println(simbolos[i]);
-      // }
+          hmap.put("Z", CZ);
+     
+ 
          System.out.println(hmap);
-        return hmap;
+       
+           return hmap;
 
     }
 
-    public static void codificacion(String message, int Nsim) {
-        HashMap<String, Integer> hmap = new HashMap<String, Integer>();
-        hmap = GenerarSimbolos(Nsim);
+    public static String codificacion(String message, int Nsim, HashMap hmap) {
+       
+       // hmap = GenerarSimbolos(Nsim);
         String mensaje = message;
         int n = message.length();
         String[] Caracter = new String[n];
@@ -173,7 +253,36 @@ public class Homofono {
 
         
         System.out.println(result);
+        return result;
     }
+    
+    public static String decodificacion(String Result, HashMap hmap){
+      String deco=""; 
+      int n = Result.length();
+        String[] Caracter = new String[n];
+        String [] encript = new String [n];
+        String result ="";
+
+        for (int i = 0; i < n; i++) {
+            Caracter[i] = Result.substring(i, i + 1);
+            System.out.println(Caracter[i]);
+        }
+        for (int i = 0; i < Caracter.length; i++) {
+            if (hmap.containsValue(Caracter[i])) {
+           //      encript[i]= hmap.getKey(Caracter[i]).toString(); // como obtener la key (?) 
+                System.out.println(encript[i]);
+            }
+            result += encript[i];
+        }
+
+        
+        System.out.println(result);
+    
+    
+    
+     return deco;
+    }
+    
 
     public static int[] ShuffleArrayPos(int a, int b) {
         Random Ramdpos = new Random();  // Random number generator		
@@ -201,8 +310,9 @@ public class Homofono {
         message = readmessage().toUpperCase();
         System.out.println("Diginite el numero de simbolos");
         NSim = sc.nextInt();
-        GenerarSimbolos(NSim);
-        codificacion(message, NSim);
+        //GenerarSimbolos(NSim);
+        HashMap<String, List<Integer>> Hash = GenerarSimbolos(NSim);
+        codificacion(message, NSim,Hash);
         //System.out.println(message);
         // TODO code application logic here
     }
