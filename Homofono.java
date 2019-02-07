@@ -223,7 +223,7 @@ public class Homofono {
         }
           hmap.put("Z", CZ);
      
- 
+         System.out.println("LOS CONJUNTOS SON LOS SIGUIENTES");
          System.out.println(hmap);
        
            return hmap;
@@ -231,27 +231,32 @@ public class Homofono {
     }
 
     public static String codificacion(String message, int Nsim, HashMap hmap) {
+       Random rn = new Random();
        
        // hmap = GenerarSimbolos(Nsim);
         String mensaje = message;
         int n = message.length();
         String[] Caracter = new String[n];
         String [] encript = new String [n];
+        int [] aa = new int [n];
+        List<Integer> list = new ArrayList<Integer>();
         String result ="";
 
         for (int i = 0; i < n; i++) {
             Caracter[i] = mensaje.substring(i, i + 1);
-            System.out.println(Caracter[i]);
+           // System.out.println(Caracter[i]);
         }
+        System.out.println("La codificacion estara dada por un elemento random de cada conjunto");
         for (int i = 0; i < Caracter.length; i++) {
             if (hmap.containsKey(Caracter[i])) {
-                 encript[i]= hmap.get(Caracter[i]).toString();
-                System.out.println(encript[i]);
+               encript[i]= hmap.get(Caracter[i]).toString(); // como obtener la key (?) 
+             //   System.out.println(encript[i]); // COMO SEPERARLOOOOS :C
+                
             }
             result += encript[i];
         }
 
-        
+        System.out.println("MENSAJE CIFRADO (ESTA DADO QUE CADA LETRA FUE REMPLAZA POR SU CONJUNTOS ) :");
         System.out.println(result);
         return result;
     }
@@ -269,7 +274,7 @@ public class Homofono {
         }
         for (int i = 0; i < Caracter.length; i++) {
             if (hmap.containsValue(Caracter[i])) {
-           //      encript[i]= hmap.getKey(Caracter[i]).toString(); // como obtener la key (?) 
+                encript[i]= hmap.get(Caracter[i]).toString(); // como obtener la key (?) 
                 System.out.println(encript[i]);
             }
             result += encript[i];
@@ -308,6 +313,7 @@ public class Homofono {
         Scanner sc = new Scanner(System.in);
         System.out.println("ingrese el mensaje a cifrar: \n");
         message = readmessage().toUpperCase();
+         message = message.replaceAll("\\s", "");
         System.out.println("Diginite el numero de simbolos");
         NSim = sc.nextInt();
         //GenerarSimbolos(NSim);
