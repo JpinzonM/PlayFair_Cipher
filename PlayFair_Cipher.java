@@ -137,7 +137,7 @@ public class PlayFair_Cipher {
             int k = 0;
             for (int i = 0; i < N; i++) {
                 if (i % 2 != 0) {
-
+                    // donde haces el separar pero sin agregar ninguna z.
                     //   System.out.println(message.substring(i-1, i+1));
                     part[k] = message.substring(i - 1, i + 1);
                     k++;
@@ -181,7 +181,7 @@ public class PlayFair_Cipher {
         System.out.println("bigramas lenght: " + bigramas.length);
         System.out.println("new bigramas lenght:" + newbigramas.length);
         String message_encripted = "";
-        for (int k = 0; k < bigramas.length-1; k++) {
+        for (int k = 0; k < bigramas.length; k++) {
             int i = 0, j = 0, i2 = 0, j2 = 0;
             String elem1, elem2;
             char el1_mat, el2_mat;
@@ -301,10 +301,49 @@ public class PlayFair_Cipher {
             }
         }
 
-        for (int i = 0; i < newbigramas.length-1; i++) {
+        for (int i = 0; i < newbigramas.length; i++) {
             message_encripted = message_encripted + "" + newbigramas[i];
         }
         return message_encripted;
+    }
+
+      private static String[] Separate2(String cipher_message) {
+        String[] part2 = new String[(cipher_message.length() / 2) + 1];
+        String messagecipher=""; 
+        String Z;
+        System.out.println("message.length: " + cipher_message.length());
+        boolean sw = true;
+        while (sw == true) {
+
+            sw = false;
+            int N = cipher_message.length();
+            int k = 0;
+            for (int i = 0; i < N; i++) {
+                if (i % 2 != 0) {
+                    // donde haces el separar pero sin agregar ninguna z.
+                    //   System.out.println(message.substring(i-1, i+1));
+                    part2[k] = cipher_message.substring(i - 1, i + 1);
+                    k++;
+                }
+            }
+
+            System.out.println("VECTOR CON TODAS LAS PAREJAS: ");
+            for (int i = 0; i < k; i++) {
+
+                System.out.println(part2[i]);
+                String par1 = part2[i].substring(0, 1);
+                String par2 = part2[i].substring(1, 2);
+                // System.out.println(par1 + " -- " + par2);
+
+            }
+            cipher_message = "";
+            for (int j = 0; j < k; j++) {
+                messagecipher = messagecipher + part2[j];
+
+            }
+
+        }
+        return part2;
     }
 
     private static String decriptedmessage(char[][] KeyMat, String[] cipherbigramas) {
@@ -317,6 +356,7 @@ public class PlayFair_Cipher {
             char el1_mat, el2_mat;
             if (cipherbigramas[k] == null) {
                 System.out.println("null");
+                k = cipherbigramas.length-1; 
             }
             elem1 = cipherbigramas[k].substring(0, 1);
             elem2 = cipherbigramas[k].substring(1, 2);
@@ -523,7 +563,7 @@ public class PlayFair_Cipher {
         }
 
         for (int i = 0;
-                i < newbigramas.length - 1; i++) {
+                i < newbigramas.length-1; i++) {
             message_encripted = message_encripted + "" + newbigramas[i];
         }
 
@@ -532,11 +572,9 @@ public class PlayFair_Cipher {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        InputStreamReader rd = new InputStreamReader(System.in);
-        Scanner sc = new Scanner(System.in);
-
+        System.gc();
         System.out.println("ingrese el mensaje a cifrar: \n");
-        message = readmessage();
+        message = readmessage().toUpperCase();
         message = message.replaceAll("\\s", "");
         System.out.println("Message sin espacios: " + message);
         System.out.println("Matriz Clave \n");
@@ -549,10 +587,12 @@ public class PlayFair_Cipher {
         System.out.println("el mensaje cifrado es: " + cipher_message);
         System.out.println("");
         System.out.println("ahora desencriptando...");
-        cipher_bigramas = Separate(cipher_message);
+         System.gc();
+        cipher_bigramas = Separate2(cipher_message);
         decipher_message = decriptedmessage(KeyMat, cipher_bigramas);
         System.out.println("el mensaje cifrado fue: " + cipher_message);
         System.out.println("el mensaje decifrado es: " + decipher_message);
     }
 
+  
 }
